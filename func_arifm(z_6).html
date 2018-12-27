@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS 1. Lesson 2</title>
+    <script src="func_arifm(z_5).js"></script>
+    <script>
+        // Задание 6
+        function mathOperation(arg1, arg2, operation){
+            switch(operation){
+                case "+":
+                    alert("Сумма: " + sum(arg1,arg2));
+                    break;
+                case "-":
+                    alert("Разность: " + razn(arg1,arg2));
+                    break;
+                case "*":
+                    alert("Произведение: " + mult(arg1,arg2));
+                    break;
+                case "/":
+                    alert("Частное: " + del(arg1,arg2));
+                    break;
+            }
+        }
+        var a = parseInt(prompt("Введите число a"));
+        var b = parseInt(prompt("Введите число b"));
+        var oper = prompt("Что с ними делать? Введите знак операции: '+', '-', '*' или '/'");
+        mathOperation(a,b,oper);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
+       
