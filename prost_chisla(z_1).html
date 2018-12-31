@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS 1. Lesson 3</title>
+    <script>
+        // Задание 1
+        var k = 100;    // простые числа будем искать в промежутке от 0 до k
+        document.write("<h3>Простые числа в промежутке от 0 до " + k + "</h3>")
+        var n = 2;  // простые числа - натуральные числа больше 1
+        var i, j;
+        while (n<=k){
+            i = 2;
+            j = 0;
+            while ((i*i <= n) && (j!=1)){
+                if (n%i == 0){
+                    j = 1;
+                }
+                i++;
+            }
+            
+            if (j == 0){
+                document.write(n + "<br>");
+            }
+            
+            n++;
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
