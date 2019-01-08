@@ -6,23 +6,20 @@
     <script>
         // Задание 1
         var object = {};
-        var number = parseInt(prompt("Введите число от 0 до 999:"));
+        var number = prompt("Введите число от 0 до 999:");
         if (!isNaN(number)){
             convert(number);
         }
         else console.log("Вы не ввели число!");
         function convert(n){
-            if (n<=999){
-                object = {
-                    un: n%10,
-                    dec: (n%100-n%10)/10,
-                    hun: (n%1000-n%100)/100
-                }
+            if (n>=0 && n<=999){
+                object.un = n%10;
+                object.dec = (n%100-n%10)/10;
+                object.hun = (n%1000-n%100)/100;
                 console.log(object);
             }
             else {
-                console.log("Заданное число больше 999!");
-                console.log(object);
+                console.log("Число должно быть от 0 до 999!");
             }
         }
     </script>
