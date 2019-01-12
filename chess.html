@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS 1. Lesson 5</title>
+    <style>
+        .new {
+            width: 300px;
+            height: 300px;
+            outline: 1px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="chessBlock"></div>
+    <div id="chessGrid"></div>
+    <div class="new">
+        <table cellspacing='0'><tr><td></td><td class='letter top'>H</td><td class='letter top'>G</td><td class='letter top'>F</td><td class='letter top'>E</td><td class='letter top'>D</td><td class='letter top'>C</td><td class='letter top'>B</td><td class='letter top'>A</td><td></td></tr><tr><td class='number left'>8</td><td></td><td style='background: black'></td><td></td><td style='background: black'></td><td></td><td style='background: black'></td><td></td><td style='background: black'></td><td class='number right'>1</td></tr><tr><td class='number left'>7</td><td style='background: black'></td><td></td><td style='background: black'></td><td></td><td style='background: black'></td><td></td><td style='background: black'></td><td></td><td class='number right'>2</td></tr><tr><td class='number left'>6</td><td></td><td style='background: black'></td><td></td><td style='background: black'></td><td></td><td style='background: black'></td><td></td><td style='background: black'></td><td class='number right'>3</td></tr><tr><td class='number left'>5</td><td style='background: black'></td><td></td><td style='background: black'></td><td></td><td style='background: black'></td><td></td><td style='background: black'></td><td></td><td class='number right'>4</td></tr><tr><td class='number left'>4</td><td></td><td style='background: black'></td><td></td><td style='background: black'></td><td></td><td style='background: black'></td><td></td><td style='background: black'></td><td class='number right'>5</td></tr><tr><td class='number left'>3</td><td style='background: black'></td><td></td><td style='background: black'></td><td></td><td style='background: black'></td><td></td><td style='background: black'></td><td></td><td class='number right'>6</td></tr><tr><td class='number left'>2</td><td>&#9817;</td><td style='background: black'>&#9817;</td><td>&#9817;</td><td style='background: black'>&#9817;</td><td>&#9817;</td><td style='background: black'>&#9817;</td><td>&#9817;</td><td style='background: black'>&#9817;</td><td class='number right'>7</td></tr><tr><td class='number left'>1</td><td style='background: black'></td><td></td><td style='background: black'></td><td></td><td style='background: black'></td><td></td><td style='background: black'></td><td></td><td class='number right'>8</td></tr><tr><td></td><td class='letter bottom'>A</td><td class='letter bottom'>B</td><td class='letter bottom'>C</td><td class='letter bottom'>D</td><td class='letter bottom'>E</td><td class='letter bottom'>F</td><td class='letter bottom'>G</td><td class='letter bottom'>H</td><td></td></tr></table>
+    </div>
+    <script>
+        var chessBlock = document.getElementById("chessBlock");
+        chessBlock.style.width = "640px";
+        chessBlock.style.height = "640px";
+        chessBlock.style.margin = "0 auto";
+        chessBlock.style.outline = "1px solid";
+        //document.body.innerHTML = "";
+        var td = document.querySelectorAll("td");
+        for (var i of td){
+            i.style.width = "70px";
+            i.style.height = "70px";
+            i.style.border = "1px solid";
+            i.style.textAlign = "center";
+        }
+        var num = document.getElementsByClassName("number");
+        for (var i of num){
+        i.style.width = "40px";
+        i.style.height = "70px";
+        }
+        
+        var lett = document.getElementsByClassName("letter");
+        for (var i of lett){
+        i.style.width = "70px";
+        i.style.height = "40px";
+        }
+    </script>
+</body>
+
+</html>
