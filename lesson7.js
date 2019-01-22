@@ -6,7 +6,6 @@ var snake = []; // Сама змейка
 var direction = 'y-'; // Направление движения змейки
 var snake_timer; // Таймер змейки
 var bar_timer; // Таймер для еды
-var barCreated = false;
 var score = 0; // Результат
 var scoreElement; // Элемент для отображения результата
 
@@ -69,7 +68,7 @@ function startGame() {
 
     snake_timer = setInterval(move, SNAKE_SPEED);//каждые 100мс запускаем функцию move
     setTimeout(createFood, 1000);
-    bar_timer = setInterval(createBar, 6000); //каждые 6с генерируется новый барьер
+    bar_timer = setInterval(createBar(), 6000); //каждые 6с генерируется новый барьер
 }
 
 /**
@@ -226,9 +225,11 @@ function createFood() {
  * Создание препятствия (барьера)
  */
 function createBar() {
-    // Удаление уже созданного барьера
-    if (barCreated){
-        var bar_exist = document.getElementsByClassName('bar-unit')[0];
+    var bar_x;
+    var bar_y;
+    return function(){
+        if ((bar_x != undefined) && (bar_y != undefined)){
+        var bar_exist = document.getElementsByClassName('cell-' + bar_y + '-' + bar_x)[0];
         var bar_exist_classes = bar_exist.getAttribute('class').split(' ');
         var classes = '';
         // length-1 - значит без последнего класса ('bar-unit')
@@ -237,14 +238,10 @@ function createBar() {
         }
         // теперь в classes обычные классы ячейки таблицы
         bar_exist.setAttribute('class', classes);
-        barCreated = false;
-    }
-    
-
-    while (!barCreated) { //пока барьер не создали
-        // рандом
-        var bar_x = Math.floor(Math.random() * FIELD_SIZE_X);
-        var bar_y = Math.floor(Math.random() * FIELD_SIZE_Y);
+        }
+        
+        bar_x = Math.floor(Math.random() * FIELD_SIZE_X);
+        bar_y = Math.floor(Math.random() * FIELD_SIZE_Y);
 
         var bar_cell = document.getElementsByClassName('cell-' + bar_y + '-' + bar_x)[0];
         var bar_cell_classes = bar_cell.getAttribute('class').split(' ');
@@ -257,7 +254,6 @@ function createBar() {
             }
 
             bar_cell.setAttribute('class', classes + 'bar-unit');
-            barCreated = true;
         }
     }
 }
