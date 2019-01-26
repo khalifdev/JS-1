@@ -6,7 +6,6 @@ var snake = []; // Сама змейка
 var direction = 'y-'; // Направление движения змейки
 var snake_timer; // Таймер змейки
 var bar_timer; // Таймер для еды
-var barCreated = false;
 var score = 0; // Результат
 var scoreElement; // Элемент для отображения результата
 
@@ -69,7 +68,7 @@ function startGame() {
 
     snake_timer = setInterval(move, SNAKE_SPEED);//каждые 100мс запускаем функцию move
     setTimeout(createFood, 1000);
-    bar_timer = setInterval(createBar, 6000); //каждые 6с генерируется новый барьер
+    bar_timer = setInterval(createBar(), 6000); //каждые 6с генерируется новый барьер
 }
 
 /**
@@ -226,38 +225,33 @@ function createFood() {
  * Создание препятствия (барьера)
  */
 function createBar() {
-    // Удаление уже созданного барьера
-    if (barCreated){
-        var bar_exist = document.getElementsByClassName('bar-unit')[0];
-        var bar_exist_classes = bar_exist.getAttribute('class').split(' ');
+    var bar;
+    return function(){
+        if (bar != undefined){
+        var bar_classes = bar.getAttribute('class').split(' ');
         var classes = '';
         // length-1 - значит без последнего класса ('bar-unit')
-        for (var i = 0; i < bar_exist_classes.length-1; i++) {
-            classes += bar_exist_classes[i] + ' ';
+        for (var i = 0; i < bar_classes.length-1; i++) {
+            classes += bar_classes[i] + ' ';
         }
         // теперь в classes обычные классы ячейки таблицы
-        bar_exist.setAttribute('class', classes);
-        barCreated = false;
-    }
-    
-
-    while (!barCreated) { //пока барьер не создали
-        // рандом
+        bar.setAttribute('class', classes);
+        }
+        
         var bar_x = Math.floor(Math.random() * FIELD_SIZE_X);
         var bar_y = Math.floor(Math.random() * FIELD_SIZE_Y);
 
-        var bar_cell = document.getElementsByClassName('cell-' + bar_y + '-' + bar_x)[0];
-        var bar_cell_classes = bar_cell.getAttribute('class').split(' ');
+        bar = document.getElementsByClassName('cell-' + bar_y + '-' + bar_x)[0];
+        var bar_classes = bar.getAttribute('class').split(' ');
 
         // проверка на змейку и еду
-        if (!bar_cell_classes.includes('snake-unit') && !bar_cell_classes.includes('food-unit')) {
+        if (!bar_classes.includes('snake-unit') && !bar_classes.includes('food-unit')) {
             var classes = '';
-            for (var i = 0; i < bar_cell_classes.length; i++) {
-                classes += bar_cell_classes[i] + ' ';
+            for (var i = 0; i < bar_classes.length; i++) {
+                classes += bar_classes[i] + ' ';
             }
 
-            bar_cell.setAttribute('class', classes + 'bar-unit');
-            barCreated = true;
+            bar.setAttribute('class', classes + 'bar-unit');
         }
     }
 }
